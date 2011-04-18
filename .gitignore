@@ -1,0 +1,24 @@
+TestResult.xml
+Build
+Results
+Results/*
+obj
+bin
+deploy
+deploy/*
+Source/CommonAssemblyInfo.cs
+_ReSharper.*
+*.csproj.user
+*.resharper.user
+*.ReSharper.user
+<<<<<<< HEAD
+*.ReSharper
+=======
+>>>>>>> master
+*.suo
+*.cache
+~$*
+Thumbs.db
+*.pidb
+<<<<<<< HEAD
+*.userprefs
