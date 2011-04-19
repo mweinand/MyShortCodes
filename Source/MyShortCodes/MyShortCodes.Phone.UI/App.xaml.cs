@@ -42,6 +42,8 @@ namespace MyShortCodes.Phone.UI
         /// <returns>The root frame of the Phone Application.</returns>
         public PhoneApplicationFrame RootFrame { get; private set; }
 
+        public static ShortCodeModel ActiveMessage { get; set; }
+
         /// <summary>
         /// Constructor for the Application object.
         /// </summary>
