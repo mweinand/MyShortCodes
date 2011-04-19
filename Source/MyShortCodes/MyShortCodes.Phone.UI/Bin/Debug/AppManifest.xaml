@@ -2,5 +2,6 @@
   <Deployment.Parts>
     <AssemblyPart x:Name="MyShortCodes.Phone.UI" Source="MyShortCodes.Phone.UI.dll" />
     <AssemblyPart x:Name="Microsoft.Phone.Controls" Source="Microsoft.Phone.Controls.dll" />
+    <AssemblyPart x:Name="MyShortCodes.Phone" Source="MyShortCodes.Phone.dll" />
   </Deployment.Parts>
 </Deployment>

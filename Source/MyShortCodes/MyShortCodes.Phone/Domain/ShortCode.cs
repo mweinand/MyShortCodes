@@ -1,3 +1,5 @@
+using System;
+
 namespace MyShortCodes.Phone.Domain
 {
     public class ShortCode
@@ -5,5 +7,6 @@ namespace MyShortCodes.Phone.Domain
         public int ShortCodeId { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
+        public DateTime LastUsed { get; set; }
     }
 }

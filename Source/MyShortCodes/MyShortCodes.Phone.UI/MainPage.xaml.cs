@@ -33,5 +33,11 @@ namespace MyShortCodes.Phone.UI
                 App.ViewModel.LoadData();
             }
         }
+
+        private void ApplicationBarAddNewClick(object sender, EventArgs e)
+        {
+            var destination = new Uri("/AddPage.xaml", UriKind.Relative);
+            NavigationService.Navigate(destination);
+        }
     }
 }
