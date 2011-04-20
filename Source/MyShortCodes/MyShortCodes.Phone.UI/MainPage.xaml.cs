@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
+using MyShortCodes.Phone.UI.Storage;
 using MyShortCodes.Phone.UI.ViewModels;
 
 namespace MyShortCodes.Phone.UI
@@ -32,7 +33,7 @@ namespace MyShortCodes.Phone.UI
         {
             if (!App.ViewModel.IsDataLoaded)
             {
-                App.ViewModel.LoadData();
+                StorageManager.LoadData();
             }
         }
 

@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using MyShortCodes.Phone.UI.Storage;
 using MyShortCodes.Phone.UI.ViewModels;
 
 namespace MyShortCodes.Phone.UI
@@ -86,7 +87,7 @@ namespace MyShortCodes.Phone.UI
             // Ensure that application state is restored appropriately
             if (!App.ViewModel.IsDataLoaded)
             {
-                App.ViewModel.LoadData();
+                StorageManager.LoadData();
             }
         }
 
