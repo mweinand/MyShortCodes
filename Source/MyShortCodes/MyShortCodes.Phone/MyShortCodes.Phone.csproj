@@ -48,12 +48,17 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Persistence\EntityPersister.cs" />
+    <Compile Include="Domain\ShortCode.cs" />
+    <Compile Include="Infrastructure\BindableObject.cs" />
+    <Compile Include="Infrastructure\Container\MicroMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\EntityInsertService.cs" />
-    <Compile Include="Services\Repository.cs" />
+    <Compile Include="State\ApplicationState.cs" />
+    <Compile Include="Storage\SettingsManager.cs" />
+    <Compile Include="Storage\StorageManager.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Commands\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions />

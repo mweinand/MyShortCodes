@@ -13,6 +13,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Tasks;
 using MyShortCodes.Phone.UI.Storage;
 using MyShortCodes.Phone.UI.ViewModels;
+using MyShortCodes.Phone.Domain;
 
 namespace MyShortCodes.Phone.UI
 {
@@ -31,10 +32,10 @@ namespace MyShortCodes.Phone.UI
         // Load data for the ViewModel Items
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!App.ViewModel.IsDataLoaded)
-            {
-                StorageManager.LoadData();
-            }
+            //if (!App.ViewModel.IsDataLoaded)
+            //{
+            //    StorageManager.LoadData();
+            //}
         }
 
         private void ApplicationBarAddNewClick(object sender, EventArgs e)
@@ -51,7 +52,7 @@ namespace MyShortCodes.Phone.UI
                 return;
             }
 
-            var shortCode = listBox.SelectedItem as ShortCodeModel;
+            var shortCode = listBox.SelectedItem as ShortCode;
             if(shortCode == null)
             {
                 return;

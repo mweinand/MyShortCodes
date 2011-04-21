@@ -14,12 +14,15 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using MyShortCodes.Phone.UI.Storage;
 using MyShortCodes.Phone.UI.ViewModels;
+using MyShortCodes.Phone.Infrastructure.Container;
 
 namespace MyShortCodes.Phone.UI
 {
     public partial class App : Application
     {
         private static MainViewModel viewModel = null;
+
+        private Action<IContainer> _initializationAction;
 
         /// <summary>
         /// A static ViewModel used by the views to bind against.
@@ -42,9 +45,7 @@ namespace MyShortCodes.Phone.UI
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
         public PhoneApplicationFrame RootFrame { get; private set; }
-
-        public static ShortCodeModel ActiveMessage { get; set; }
-
+        
         /// <summary>
         /// Constructor for the Application object.
         /// </summary>
@@ -72,6 +73,12 @@ namespace MyShortCodes.Phone.UI
 
             // Phone-specific initialization
             InitializePhoneApplication();
+
+            // setup container
+            _initializationAction = (IContainer x) =>
+            {
+                x.Register<IStorageManager, StorageManager>();
+            };
         }
 
         // Code to execute when the application is launching (eg, from Start)
@@ -84,11 +91,13 @@ namespace MyShortCodes.Phone.UI
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+
+
             // Ensure that application state is restored appropriately
-            if (!App.ViewModel.IsDataLoaded)
-            {
-                StorageManager.LoadData();
-            }
+            //if (!App.ViewModel.IsDataLoaded)
+            //{
+            //    StorageManager.LoadData();
+            //}
         }
 
         // Code to execute when the application is deactivated (sent to background)

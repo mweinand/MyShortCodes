@@ -72,10 +72,7 @@
     <Compile Include="SelectMessage.xaml.cs">
       <DependentUpon>SelectMessage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Storage\StorageManager.cs" />
-    <Compile Include="ViewModels\BindableObject.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\ShortCodeModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
