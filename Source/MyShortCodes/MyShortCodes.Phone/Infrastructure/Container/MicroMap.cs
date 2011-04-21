@@ -1,13 +1,4 @@
 ﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -34,12 +25,12 @@ namespace MyShortCodes.Phone.Infrastructure.Container
 
         public void Register<TInterface>(TInterface concreteClass) where TInterface : class
         {
-            MicroMap.Register<TInterface>(concreteClass);
+            MicroMap.Register(concreteClass);
         }
 
         public void Register<TInterface>(Func<IContainer, TInterface> definition) where TInterface : class
         {
-            MicroMap.Register<TInterface>(definition);
+            MicroMap.Register(definition);
         }
 
         public TInterface GetInstance<TInterface>() where TInterface : class 
@@ -59,20 +50,27 @@ namespace MyShortCodes.Phone.Infrastructure.Container
             initialization(new MicroMapContainer());
         }
 
+        public static void Initialize()
+        {
+            Initialize(x => { });
+        }
+
         public static void Register<TInterface, TClass>()
             where TClass : TInterface
             where TInterface : class
         {
-            if (!_store.ContainsKey(typeof(TInterface)))
+            if (_store.ContainsKey(typeof(TInterface)))
             {
                 throw new InvalidOperationException("Duplicate Interface Definition");
             }
-            _store.Add(typeof(TInterface), typeof(TClass)); 
+            var interfaceType = typeof (TInterface);
+            var concreteType = typeof (TClass).UnderlyingSystemType;
+            _store.Add(interfaceType, concreteType); 
         }
 
         public static void Register<TInterface>(TInterface concreteClass) where TInterface : class
         {
-            if (!_store.ContainsKey(typeof(TInterface)))
+            if (_store.ContainsKey(typeof(TInterface)))
             {
                 throw new InvalidOperationException("Duplicate Interface Definition");
             }
@@ -81,7 +79,7 @@ namespace MyShortCodes.Phone.Infrastructure.Container
 
         public static void Register<TInterface>(Func<IContainer, TInterface> definition) where TInterface : class
         {
-            if(!_store.ContainsKey(typeof(TInterface)))
+            if(_store.ContainsKey(typeof(TInterface)))
             {
                 throw new InvalidOperationException("Duplicate Interface Definition");
             }
@@ -98,22 +96,26 @@ namespace MyShortCodes.Phone.Infrastructure.Container
             var definition = _store[interfaceType];
             var definitionType = definition.GetType();
 
-            if (definitionType == interfaceType)
+            if (interfaceType.IsAssignableFrom(definitionType))
             {
                 return definition;
             }
-            else if (definitionType == typeof(Func<IContainer, object>))
+            if (definitionType.IsGenericType && typeof(Func<,>).IsAssignableFrom(definitionType.GetGenericTypeDefinition()))
             {
-                var definitionFunc = definition as Func<IContainer, object>;
+                var invokeMethod = definitionType.GetMethod("Invoke");
 
-                return definitionFunc(new MicroMapContainer());
+                return invokeMethod.Invoke(definition, new object[] { new MicroMapContainer() });
             }
-            else if (definitionType == typeof(Type))
+            if (definitionType.IsInstanceOfType(typeof(Type)))
             {
-                var concreteType = definitionType as Type;
+                var concreteType = definition as Type;
+                if(concreteType == null)
+                {
+                    throw new InvalidOperationException("Invalid definition");
+                }
 
                 // find the constructor with the most arguments
-                var constructors = concreteType.GetConstructors(BindingFlags.Public);
+                var constructors = concreteType.GetConstructors();
                 ConstructorInfo longestConstructor = null;
                 foreach (var constructor in constructors)
                 {
@@ -123,26 +125,36 @@ namespace MyShortCodes.Phone.Infrastructure.Container
                     }
                 }
 
+                if(longestConstructor == null)
+                {
+                    return Activator.CreateInstance(concreteType);
+                } 
+
+
                 // get all the arugments
                 var parameters = longestConstructor.GetParameters();
                 var arguments = new List<object>();
                 foreach (var parameter in parameters)
                 {
-                    arguments.Add(GetInstance(parameter.ParameterType));
+                    var dependancyObject = GetInstance(parameter.ParameterType);
+                    arguments.Add(dependancyObject);
                 }
 
                 // get our instance
-
-                return Activator.CreateInstance(concreteType, arguments);
+                if(arguments.Count == 0)
+                {
+                    return Activator.CreateInstance(concreteType);
+                }
+                return longestConstructor.Invoke(arguments.ToArray());
             }
 
             throw new InvalidOperationException(String.Format("No valid definition for {0}", interfaceType.Name));
         }
 
-
         public static TInterface GetInstance<TInterface>() where TInterface : class
         {
             return GetInstance(typeof(TInterface)) as TInterface;
         }
+
     }
 }

@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyShortCodes.Phone", "MySho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyShortCodes.Phone.UI", "MyShortCodes.Phone.UI\MyShortCodes.Phone.UI.csproj", "{CA88D773-63D8-4851-9B81-05764308C60A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyShortCodes.Phone.Tests", "MyShortCodes.Phone.Tests\MyShortCodes.Phone.Tests.csproj", "{ECDA4F6C-10F2-45F1-87FA-8D881B300915}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyShortCodes.Phone.Tests.Web", "MyShortCodes.Phone.Tests.Web\MyShortCodes.Phone.Tests.Web.csproj", "{26CA0A00-7162-46FF-82CA-F7E7DFE5E0E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{CA88D773-63D8-4851-9B81-05764308C60A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA88D773-63D8-4851-9B81-05764308C60A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CA88D773-63D8-4851-9B81-05764308C60A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{ECDA4F6C-10F2-45F1-87FA-8D881B300915}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECDA4F6C-10F2-45F1-87FA-8D881B300915}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECDA4F6C-10F2-45F1-87FA-8D881B300915}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECDA4F6C-10F2-45F1-87FA-8D881B300915}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26CA0A00-7162-46FF-82CA-F7E7DFE5E0E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26CA0A00-7162-46FF-82CA-F7E7DFE5E0E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26CA0A00-7162-46FF-82CA-F7E7DFE5E0E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26CA0A00-7162-46FF-82CA-F7E7DFE5E0E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
