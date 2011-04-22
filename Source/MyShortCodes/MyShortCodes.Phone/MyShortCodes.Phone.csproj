@@ -48,17 +48,22 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandHandlers\ApplicationLoadedCommandHandler.cs" />
+    <Compile Include="CommandHandlers\MainPageLoadedCommandHandler.cs" />
+    <Compile Include="Commands\ApplicationLoadedCommand.cs" />
+    <Compile Include="Commands\MainPageLoadedCommand.cs" />
     <Compile Include="Domain\ShortCode.cs" />
     <Compile Include="Infrastructure\BindableObject.cs" />
     <Compile Include="Infrastructure\Container\MicroMap.cs" />
+    <Compile Include="Infrastructure\Messaging\ICommand.cs" />
+    <Compile Include="Infrastructure\Messaging\ICommandBus.cs" />
+    <Compile Include="Infrastructure\Messaging\ICommandHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="State\ApplicationState.cs" />
     <Compile Include="Storage\SettingsManager.cs" />
     <Compile Include="Storage\StorageManager.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Commands\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <ProjectExtensions />

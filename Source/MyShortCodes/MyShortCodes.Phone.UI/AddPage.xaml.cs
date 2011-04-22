@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
-using MyShortCodes.Phone.UI.Storage;
+using MyShortCodes.Phone.Storage;
 using MyShortCodes.Phone.UI.ViewModels;
 using MyShortCodes.Phone.Domain;
 using MyShortCodes.Phone.State;

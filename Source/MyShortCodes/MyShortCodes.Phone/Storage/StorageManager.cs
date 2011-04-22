@@ -1,11 +1,8 @@
-
-using System.IO.IsolatedStorage;
 using System.Linq;
 using MyShortCodes.Phone.State;
-using MyShortCodes.Phone.Storage;
 using MyShortCodes.Phone.Domain;
 
-namespace MyShortCodes.Phone.UI.Storage
+namespace MyShortCodes.Phone.Storage
 {
     public interface IStorageManager
     {
@@ -15,8 +12,8 @@ namespace MyShortCodes.Phone.UI.Storage
 
     public class StorageManager : IStorageManager
     {
-        private IApplicationState _applicationState;
-        private ISettingsManager _settingsManager;
+        private readonly IApplicationState _applicationState;
+        private readonly ISettingsManager _settingsManager;
 
         public StorageManager(IApplicationState applicationState, ISettingsManager settingsManager)
         {
@@ -45,6 +42,7 @@ namespace MyShortCodes.Phone.UI.Storage
             {
                 _applicationState.ShortCodes.Add(shortCode);
             }
+            _applicationState.IsDataLoaded = true;
         }
     }
 }

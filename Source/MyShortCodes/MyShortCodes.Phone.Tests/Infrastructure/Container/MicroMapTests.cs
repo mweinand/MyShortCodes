@@ -60,7 +60,22 @@ namespace MyShortCodes.Phone.Tests
             Assert.AreEqual(instance.GetType(), typeof(Class2));
 
             Assert.AreEqual(instance.Class1.GetType(), typeof (Class1));
+        }
 
+        [TestMethod]
+        public void builds_up_complex_dependancy()
+        {
+            MicroMap.Initialize();
+            MicroMap.Register<Interface1, Class1>();
+            MicroMap.Register<Interface2>(x => new Class2(x.GetInstance<Interface1>()));
+            MicroMap.Register<Interface3, Class3>();
+
+            var instance = MicroMap.GetInstance<Interface3>();
+
+            Assert.AreEqual(instance.GetType(), typeof(Class3));
+
+            Assert.AreEqual(instance.Class1.GetType(), typeof(Class1));
+            Assert.AreEqual(instance.Class2.GetType(), typeof(Class2));
         }
     }
 
@@ -95,6 +110,24 @@ namespace MyShortCodes.Phone.Tests
         public void Test2()
         {
             Class1.Test();
+        }
+    }
+
+    public interface Interface3
+    {
+        Interface1 Class1 { get; }
+        Interface2 Class2 { get; }
+    }
+
+    public class Class3 : Interface3
+    {
+        public Interface1 Class1 { get; private set; }
+        public Interface2 Class2 { get; private set; }
+
+        public Class3(Interface1 i1, Interface2 i2)
+        {
+            Class1 = i1;
+            Class2 = i2;
         }
     }
 }

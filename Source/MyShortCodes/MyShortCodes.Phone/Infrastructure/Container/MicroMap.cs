@@ -130,7 +130,6 @@ namespace MyShortCodes.Phone.Infrastructure.Container
                     return Activator.CreateInstance(concreteType);
                 } 
 
-
                 // get all the arugments
                 var parameters = longestConstructor.GetParameters();
                 var arguments = new List<object>();

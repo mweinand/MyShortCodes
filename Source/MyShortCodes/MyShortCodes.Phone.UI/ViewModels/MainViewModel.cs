@@ -6,7 +6,12 @@ using MyShortCodes.Phone.Domain;
 
 namespace MyShortCodes.Phone.UI.ViewModels
 {
-    public class MainViewModel : BindableObject
+    public interface IMainViewModel
+    {
+        ObservableCollection<ShortCode> AllShortCodes { get; }
+    }
+
+    public class MainViewModel : BindableObject, IMainViewModel
     {
         public MainViewModel()
         {
@@ -18,10 +23,5 @@ namespace MyShortCodes.Phone.UI.ViewModels
         /// </summary>
         public ObservableCollection<ShortCode> AllShortCodes { get; private set; }
 
-        public bool IsDataLoaded
-        {
-            get;
-            set;
-        }
     }
 }
