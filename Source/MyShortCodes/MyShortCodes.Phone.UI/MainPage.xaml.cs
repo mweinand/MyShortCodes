@@ -6,8 +6,8 @@ using Microsoft.Phone.Tasks;
 using MyShortCodes.Phone.Commands;
 using MyShortCodes.Phone.Infrastructure.Container;
 using MyShortCodes.Phone.Infrastructure.Messaging;
-using MyShortCodes.Phone.UI.ViewModels;
 using MyShortCodes.Phone.Domain;
+using MyShortCodes.Phone.ViewModels;
 
 namespace MyShortCodes.Phone.UI
 {

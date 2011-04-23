@@ -1,10 +1,8 @@
-﻿using System;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using MyShortCodes.Phone.Infrastructure;
 using MyShortCodes.Phone.Domain;
 
-namespace MyShortCodes.Phone.UI.ViewModels
+namespace MyShortCodes.Phone.ViewModels
 {
     public interface IMainViewModel
     {

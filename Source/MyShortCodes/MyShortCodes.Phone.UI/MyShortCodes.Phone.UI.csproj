@@ -72,7 +72,6 @@
     <Compile Include="SelectMessage.xaml.cs">
       <DependentUpon>SelectMessage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\MainViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

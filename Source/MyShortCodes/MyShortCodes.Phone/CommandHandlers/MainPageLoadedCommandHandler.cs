@@ -1,6 +1,8 @@
 using System;
 using MyShortCodes.Phone.Commands;
+using MyShortCodes.Phone.Infrastructure.Container;
 using MyShortCodes.Phone.Infrastructure.Messaging;
+using MyShortCodes.Phone.ViewModels;
 
 namespace MyShortCodes.Phone.CommandHandlers
 {
@@ -8,7 +10,7 @@ namespace MyShortCodes.Phone.CommandHandlers
     {
         public void Handle(MainPageLoadedCommand command)
         {
-            throw new NotImplementedException();
+            var viewModel = MicroMap.GetInstance<IMainViewModel>();
         }
     }
 }
