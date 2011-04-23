@@ -68,6 +68,7 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Navigation\NavigationServiceWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectMessage.xaml.cs">
       <DependentUpon>SelectMessage.xaml</DependentUpon>

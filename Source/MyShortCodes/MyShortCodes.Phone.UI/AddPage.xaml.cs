@@ -4,26 +4,25 @@ using Microsoft.Phone.Controls;
 using MyShortCodes.Phone.Storage;
 using MyShortCodes.Phone.Domain;
 using MyShortCodes.Phone.State;
+using MyShortCodes.Phone.Infrastructure.Container;
+using MyShortCodes.Phone.ViewModels;
+using MyShortCodes.Phone.Infrastructure.Messaging;
+using MyShortCodes.Phone.Commands;
 
 namespace MyShortCodes.Phone.UI
 {
     public partial class AddPage : PhoneApplicationPage
     {
-        private IStorageManager _storageManager;
-        private IApplicationState _applicationState;
-
         public AddPage()
         {
             InitializeComponent();
+            DataContext = MicroMap.GetInstance<IAddPageViewModel>();
         }
 
         private void SaveButtonClick(object sender, RoutedEventArgs e)
         {
-            var shortCode = new ShortCode {Name = ShortCodeName.Text, Code = ShortCodeCode.Text};
-            _applicationState.ShortCodes.Add(shortCode);
-            _storageManager.SaveData();
-            var mainUri = new Uri("/MainPage.xaml", UriKind.Relative);
-            NavigationService.Navigate(mainUri);
+            var commandBus = MicroMap.GetInstance<ICommandBus>();
+            commandBus.PublishCommand(new SaveShortCodeCommand());
         }
     }
 }

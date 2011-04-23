@@ -13,10 +13,14 @@ namespace MyShortCodes.Phone.UI
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        private ICommandBus _commandBus;
+
         // Constructor
         public MainPage()
         {
             InitializeComponent();
+
+            _commandBus = MicroMap.GetInstance<ICommandBus>();
 
             // Set the data context of the listbox control to the sample data
             DataContext = MicroMap.GetInstance<IMainViewModel>();
@@ -27,13 +31,12 @@ namespace MyShortCodes.Phone.UI
         private void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             var commandBus = MicroMap.GetInstance<ICommandBus>();
-            commandBus.PublishCommand(new MainPageLoadedCommand());
+            _commandBus.PublishCommand(new MainPageLoadedCommand());
         }
 
         private void ApplicationBarAddNewClick(object sender, EventArgs e)
         {
-            var destination = new Uri("/AddPage.xaml", UriKind.Relative);
-            NavigationService.Navigate(destination);
+            _commandBus.PublishCommand(new AddNewShortCodeCommand());
         }
 
         private void CodeListSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -50,9 +53,18 @@ namespace MyShortCodes.Phone.UI
                 return;
             }
 
-            var message = new SmsComposeTask();
-            message.To = shortCode.Code;
-            message.Show();
+            _commandBus.PublishCommand(new SendSmsCommand(shortCode));
+        }
+
+        private void EditItemClick(object sender, RoutedEventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            if (menuItem == null) { return; }
+
+            var shortCode = menuItem.DataContext as ShortCode;
+            if (shortCode == null) { return; }
+
+            _commandBus.PublishCommand(new EditShortCodeCommand(shortCode));
         }
     }
 }

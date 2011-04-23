@@ -23,17 +23,17 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="My Short Codes" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="PageTitle" Text="Add New" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="PageTitle" Text="{Binding PageTitle}" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             
-            <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical" DataContext="{Binding ActiveShortCode}">
                 <TextBlock Text="Name"></TextBlock>
-                <TextBox x:Name="ShortCodeName"></TextBox>
+                <TextBox x:Name="ShortCodeName" Text="{Binding Name, Mode=TwoWay}"></TextBox>
                 <TextBlock Text="Code"></TextBlock>
-                <TextBox x:Name="ShortCodeCode" MaxLength="5" InputScope="Digits"></TextBox>
+                <TextBox x:Name="ShortCodeCode" Text="{Binding Code, Mode=TwoWay}" MaxLength="5" InputScope="Digits"></TextBox>
                 <Button Content="Save" Click="SaveButtonClick"></Button>
             </StackPanel>
         </Grid>

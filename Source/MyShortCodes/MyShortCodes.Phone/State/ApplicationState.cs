@@ -6,16 +6,21 @@ namespace MyShortCodes.Phone.State
 {
     public interface IApplicationState
     {
-        IList<ShortCode> ShortCodes { get; set; }
+        IList<ShortCode> ShortCodes { get; }
         bool IsDataLoaded { get; set; }
     }
     public class ApplicationState : IApplicationState
     {
-        public IList<ShortCode> ShortCodes { get; set; }
+        public IList<ShortCode> ShortCodes { get; private set; }
         public bool IsDataLoaded
         {
             get;
             set;
+        }
+
+        public ApplicationState()
+        {
+            ShortCodes = new List<ShortCode>();
         }
     }
 }

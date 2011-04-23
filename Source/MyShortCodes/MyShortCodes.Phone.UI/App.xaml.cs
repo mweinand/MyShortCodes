@@ -9,6 +9,9 @@ using MyShortCodes.Phone.Infrastructure.Messaging;
 using MyShortCodes.Phone.State;
 using MyShortCodes.Phone.Infrastructure.Container;
 using MyShortCodes.Phone.Storage;
+using MyShortCodes.Phone.UI.Navigation;
+using MyShortCodes.Phone.Navigation;
+using MyShortCodes.Phone.ViewModels;
 
 namespace MyShortCodes.Phone.UI
 {
@@ -53,17 +56,38 @@ namespace MyShortCodes.Phone.UI
             // setup container
             var state = new ApplicationState();
             var commandBus = new CommandBus();
-            
+
+            var mainViewModel = new MainViewModel();
+            var addPageViewModel = new AddPageViewModel();
+
             _initializationAction = (IContainer x) =>
             {
+                x.Register<ISettingsManager, SettingsManager>();
                 x.Register<IStorageManager, StorageManager>();
                 x.Register<ICommandBus>(commandBus);
                 x.Register<IApplicationState>(state);
+                x.Register<INavigationServiceWrapper, NavigationServiceWrapper>();
+
                 x.Register<ICommandHandler<ApplicationLoadedCommand>, ApplicationLoadedCommandHandler>();
+                x.Register<ICommandHandler<MainPageLoadedCommand>, MainPageLoadedCommandHandler>();
+                x.Register<ICommandHandler<AddNewShortCodeCommand>, AddNewShortCodeCommandHandler>();
+                x.Register<ICommandHandler<EditShortCodeCommand>, EditShortCodeCommandHandler>();
+                x.Register<ICommandHandler<SaveShortCodeCommand>, SaveShortCodeCommandHandler>();
+                x.Register<ICommandHandler<SendSmsCommand>, SendSmsCommandHandler>();
+                
+
+                x.Register<IMainViewModel>(mainViewModel);
+                x.Register<IAddPageViewModel>(addPageViewModel);
             };
             MicroMap.Initialize(_initializationAction);
 
             commandBus.RegisterHandler(MicroMap.GetInstance<ICommandHandler<ApplicationLoadedCommand>>());
+            commandBus.RegisterHandler(MicroMap.GetInstance<ICommandHandler<MainPageLoadedCommand>>());
+            commandBus.RegisterHandler(MicroMap.GetInstance<ICommandHandler<AddNewShortCodeCommand>>());
+            commandBus.RegisterHandler(MicroMap.GetInstance<ICommandHandler<EditShortCodeCommand>>());
+            commandBus.RegisterHandler(MicroMap.GetInstance<ICommandHandler<SaveShortCodeCommand>>());
+            commandBus.RegisterHandler(MicroMap.GetInstance<ICommandHandler<SendSmsCommand>>());
+
         }
 
         // Code to execute when the application is launching (eg, from Start)
@@ -78,6 +102,8 @@ namespace MyShortCodes.Phone.UI
         // This code will not execute when the application is first launched
         private void Application_Activated(object sender, ActivatedEventArgs e)
         {
+            var commandBus = MicroMap.GetInstance<ICommandBus>();
+            commandBus.PublishCommand(new ApplicationLoadedCommand());
         }
 
         // Code to execute when the application is deactivated (sent to background)

@@ -25,7 +25,7 @@ namespace MyShortCodes.Phone.Storage
         {
             if (!IsolatedStorageSettings.ApplicationSettings.Contains(name))
             {
-                throw new InvalidCastException("Not a saved setting");
+                return null;
             }
             var data = IsolatedStorageSettings.ApplicationSettings[name] as TType;
             return data;
