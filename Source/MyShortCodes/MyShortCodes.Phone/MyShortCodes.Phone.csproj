@@ -72,6 +72,7 @@
     <Compile Include="Navigation\NavigationServiceWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IDialogService.cs" />
+    <Compile Include="Services\TrialService.cs" />
     <Compile Include="State\ApplicationState.cs" />
     <Compile Include="Storage\SettingsManager.cs" />
     <Compile Include="Storage\StorageManager.cs" />

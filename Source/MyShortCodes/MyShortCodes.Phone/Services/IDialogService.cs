@@ -9,6 +9,7 @@ namespace MyShortCodes.Phone.Services
     public interface IDialogService
     {
         bool Confirm(string message);
+        void Alert(string message);
     }
 
     public class DialogService : IDialogService
@@ -17,6 +18,11 @@ namespace MyShortCodes.Phone.Services
         {
             var result = MessageBox.Show(message, "Confirm", MessageBoxButton.OKCancel);
             return result == MessageBoxResult.OK;
+        }
+
+        public void Alert(string message)
+        {
+            MessageBox.Show(message, "Message", MessageBoxButton.OK);
         }
     }
 }

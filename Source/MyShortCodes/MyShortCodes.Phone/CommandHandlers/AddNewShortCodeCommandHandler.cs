@@ -14,6 +14,8 @@ using MyShortCodes.Phone.Navigation;
 using MyShortCodes.Phone.Infrastructure.Container;
 using MyShortCodes.Phone.ViewModels;
 using MyShortCodes.Phone.Domain;
+using MyShortCodes.Phone.Services;
+using MyShortCodes.Phone.State;
 
 namespace MyShortCodes.Phone.CommandHandlers
 {
@@ -21,15 +23,27 @@ namespace MyShortCodes.Phone.CommandHandlers
     {
         private INavigationServiceWrapper _navigationService;
         private IContainer _container;
+        private ITrialService _trialService;
+        private IApplicationState _applicationState;
+        private IDialogService _dialogService;
 
-        public AddNewShortCodeCommandHandler(INavigationServiceWrapper navigationService, IContainer container)
+        public AddNewShortCodeCommandHandler(INavigationServiceWrapper navigationService, IContainer container, ITrialService trialService, IApplicationState applicationState, IDialogService dialogService)
         {
             _navigationService = navigationService;
             _container = container;
+            _trialService = trialService;
+            _applicationState = applicationState;
+            _dialogService = dialogService;
         }
 
         public void Handle(AddNewShortCodeCommand command)
         {
+            if (_trialService.IsTrial() && _applicationState.ShortCodes.Count > 0)
+            {
+                _dialogService.Alert("The trial version is limited to storing 1 short code only");
+                return;
+            }
+
             var addPageViewModel = _container.GetInstance<IAddPageViewModel>();
 
             addPageViewModel.ActiveShortCode = new ShortCode();

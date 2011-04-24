@@ -72,6 +72,7 @@ namespace MyShortCodes.Phone.UI
 
                 x.Register<INavigationServiceWrapper, NavigationServiceWrapper>();
                 x.Register<IDialogService, DialogService>();
+                x.Register<ITrialService, TrialService>();
 
                 x.Register<ICommandHandler<ApplicationLoadedCommand>, ApplicationLoadedCommandHandler>();
                 x.Register<ICommandHandler<MainPageLoadedCommand>, MainPageLoadedCommandHandler>();
