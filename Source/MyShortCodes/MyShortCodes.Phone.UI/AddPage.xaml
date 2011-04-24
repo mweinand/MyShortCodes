@@ -29,12 +29,21 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             
-            <StackPanel Orientation="Vertical" DataContext="{Binding ActiveShortCode}">
-                <TextBlock Text="Name"></TextBlock>
-                <TextBox x:Name="ShortCodeName" Text="{Binding Name, Mode=TwoWay}"></TextBox>
-                <TextBlock Text="Code"></TextBlock>
-                <TextBox x:Name="ShortCodeCode" Text="{Binding Code, Mode=TwoWay}" MaxLength="5" InputScope="Digits"></TextBox>
-                <Button Content="Save" Click="SaveButtonClick"></Button>
+            <StackPanel Orientation="Vertical">
+                <ListBox x:Name="ErrorListBox" ItemsSource="{Binding Errors}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" TextWrapping="Wrap" Style="{StaticResource PhoneTextAccentStyle}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <StackPanel Orientation="Vertical" DataContext="{Binding ActiveShortCode}">
+                    <TextBlock Text="Name"></TextBlock>
+                    <TextBox x:Name="ShortCodeName" Text="{Binding Name, Mode=TwoWay}"></TextBox>
+                    <TextBlock Text="Code"></TextBlock>
+                    <TextBox x:Name="ShortCodeCode" Text="{Binding Code, Mode=TwoWay}" MaxLength="10" InputScope="Digits"></TextBox>
+                    <Button Content="Save" Click="SaveButtonClick"></Button>
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Grid>

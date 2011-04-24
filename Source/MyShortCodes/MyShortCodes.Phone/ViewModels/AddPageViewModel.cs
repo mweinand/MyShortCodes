@@ -10,6 +10,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using MyShortCodes.Phone.Domain;
 using MyShortCodes.Phone.Infrastructure;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace MyShortCodes.Phone.ViewModels
 {
@@ -17,6 +19,7 @@ namespace MyShortCodes.Phone.ViewModels
     {
         ShortCode ActiveShortCode { get; set; }
         string PageTitle { get; set; }
+        ObservableCollection<string> Errors { get; }
     }
 
     public class AddPageViewModel : BindableObject, IAddPageViewModel
@@ -45,6 +48,13 @@ namespace MyShortCodes.Phone.ViewModels
                 _pageTitle = value;
                 NotifyPropertyChanged("PageTitle");
             }
+        }
+
+        public ObservableCollection<string> Errors { get; private set; }
+
+        public AddPageViewModel()
+        {
+            Errors = new ObservableCollection<string>();
         }
 
     }

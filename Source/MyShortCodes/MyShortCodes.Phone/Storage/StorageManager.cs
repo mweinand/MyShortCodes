@@ -32,11 +32,14 @@ namespace MyShortCodes.Phone.Storage
             _applicationState.ShortCodes.Clear();
             //_applicationState.IsDataLoaded = true;
             
-            var shortCodes = _settingsManager.Get<ShortCode[]>("ShortCodes");                
+            var shortCodes = _settingsManager.Get<ShortCode[]>("ShortCodes");
+            var nextShortCodeId = _settingsManager.Get<int>("NextShortCodeId");
             if(shortCodes == null)
             {
                 return;
             }
+
+            _applicationState.NextShortCodeId = nextShortCodeId > 0 ? nextShortCodeId : 1;
 
             foreach(var shortCode in shortCodes)
             {

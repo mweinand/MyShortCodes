@@ -66,5 +66,16 @@ namespace MyShortCodes.Phone.UI
 
             _commandBus.PublishCommand(new EditShortCodeCommand(shortCode));
         }
+
+        private void DeleteItemClick(object sender, RoutedEventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            if (menuItem == null) { return; }
+
+            var shortCode = menuItem.DataContext as ShortCode;
+            if (shortCode == null) { return; }
+
+            _commandBus.PublishCommand(new DeleteShortCodeCommand(shortCode));
+        }
     }
 }

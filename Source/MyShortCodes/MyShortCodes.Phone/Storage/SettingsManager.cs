@@ -14,20 +14,20 @@ namespace MyShortCodes.Phone.Storage
 {
     public interface ISettingsManager
     {
-        TType Get<TType>(string name) where TType : class;
+        TType Get<TType>(string name);
         void Put(string name, object data);
         void Save();
     }
 
     public class SettingsManager : ISettingsManager
     {
-        public TType Get<TType>(string name) where TType : class
+        public TType Get<TType>(string name)
         {
             if (!IsolatedStorageSettings.ApplicationSettings.Contains(name))
             {
-                return null;
+                return default(TType);
             }
-            var data = IsolatedStorageSettings.ApplicationSettings[name] as TType;
+            var data = (TType) IsolatedStorageSettings.ApplicationSettings[name];
             return data;
         }
 

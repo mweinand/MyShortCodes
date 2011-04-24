@@ -12,6 +12,9 @@ using MyShortCodes.Phone.Storage;
 using MyShortCodes.Phone.UI.Navigation;
 using MyShortCodes.Phone.Navigation;
 using MyShortCodes.Phone.ViewModels;
+using MyShortCodes.Phone.Validation;
+using MyShortCodes.Phone.Domain;
+using MyShortCodes.Phone.Services;
 
 namespace MyShortCodes.Phone.UI
 {
@@ -66,15 +69,19 @@ namespace MyShortCodes.Phone.UI
                 x.Register<IStorageManager, StorageManager>();
                 x.Register<ICommandBus>(commandBus);
                 x.Register<IApplicationState>(state);
+
                 x.Register<INavigationServiceWrapper, NavigationServiceWrapper>();
+                x.Register<IDialogService, DialogService>();
 
                 x.Register<ICommandHandler<ApplicationLoadedCommand>, ApplicationLoadedCommandHandler>();
                 x.Register<ICommandHandler<MainPageLoadedCommand>, MainPageLoadedCommandHandler>();
                 x.Register<ICommandHandler<AddNewShortCodeCommand>, AddNewShortCodeCommandHandler>();
                 x.Register<ICommandHandler<EditShortCodeCommand>, EditShortCodeCommandHandler>();
                 x.Register<ICommandHandler<SaveShortCodeCommand>, SaveShortCodeCommandHandler>();
+                x.Register<ICommandHandler<DeleteShortCodeCommand>, DeleteShortCodeCommandHandler>();
                 x.Register<ICommandHandler<SendSmsCommand>, SendSmsCommandHandler>();
-                
+
+                x.Register<IValidator<ShortCode>, ShortCodeValidator>();
 
                 x.Register<IMainViewModel>(mainViewModel);
                 x.Register<IAddPageViewModel>(addPageViewModel);
@@ -86,6 +93,7 @@ namespace MyShortCodes.Phone.UI
             commandBus.RegisterHandler(MicroMap.GetInstance<ICommandHandler<AddNewShortCodeCommand>>());
             commandBus.RegisterHandler(MicroMap.GetInstance<ICommandHandler<EditShortCodeCommand>>());
             commandBus.RegisterHandler(MicroMap.GetInstance<ICommandHandler<SaveShortCodeCommand>>());
+            commandBus.RegisterHandler(MicroMap.GetInstance<ICommandHandler<DeleteShortCodeCommand>>());
             commandBus.RegisterHandler(MicroMap.GetInstance<ICommandHandler<SendSmsCommand>>());
 
         }

@@ -1,14 +1,14 @@
 ﻿using System;
-using MyShortCodes.Phone.Infrastructure.Messaging;
 using MyShortCodes.Phone.Domain;
+using MyShortCodes.Phone.Infrastructure.Messaging;
 
 namespace MyShortCodes.Phone.Commands
 {
-    public class EditShortCodeCommand : ICommand
+    public class DeleteShortCodeCommand : ICommand
     {
         private readonly ShortCode _shortCode;
 
-        public EditShortCodeCommand(ShortCode shortCode)
+        public DeleteShortCodeCommand(ShortCode shortCode)
         {
             _shortCode = shortCode;
         }

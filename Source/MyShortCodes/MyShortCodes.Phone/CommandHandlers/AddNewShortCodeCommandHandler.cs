@@ -33,6 +33,7 @@ namespace MyShortCodes.Phone.CommandHandlers
             var addPageViewModel = _container.GetInstance<IAddPageViewModel>();
 
             addPageViewModel.ActiveShortCode = new ShortCode();
+            addPageViewModel.Errors.Clear();
             addPageViewModel.PageTitle = "add code";
 
             _navigationService.Navigate("/AddPage.xaml");
