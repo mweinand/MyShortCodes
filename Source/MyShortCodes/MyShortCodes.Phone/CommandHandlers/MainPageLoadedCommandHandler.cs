@@ -32,10 +32,18 @@ namespace MyShortCodes.Phone.CommandHandlers
 
             viewModel.RecentShortCodes.Clear();
             // needs to be decending as the add process flips it
-            var recentShortCodes = _applicationState.ShortCodes.OrderByDescending(c => c.LastUsed);
+            var recentShortCodes = _applicationState.ShortCodes.OrderByDescending(c => c.LastUsed).Take(5);
             foreach (var shortCode in recentShortCodes)
             {
                 viewModel.RecentShortCodes.Add(shortCode);
+            }
+
+            viewModel.MostUsedShortCodes.Clear();
+            // needs to be decending as the add process flips it
+            var mostUsedShortCodes = _applicationState.ShortCodes.Where(c => c.TimesUsed > 0).OrderByDescending(c => c.TimesUsed).Take(5);
+            foreach (var shortCode in mostUsedShortCodes)
+            {
+                viewModel.MostUsedShortCodes.Add(shortCode);
             }
         }
     }

@@ -32,6 +32,7 @@ namespace MyShortCodes.Phone.CommandHandlers
             }
 
             command.ShortCode.LastUsed = DateTime.Now;
+            command.ShortCode.TimesUsed++;
             _storageManager.SaveData();
 
             var message = new SmsComposeTask();

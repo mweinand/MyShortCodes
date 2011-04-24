@@ -58,7 +58,9 @@ namespace MyShortCodes.Phone.CommandHandlers
             var existingShortCode = _applicationState.ShortCodes.SingleOrDefault(c => c.ShortCodeId == addPageViewModel.ActiveShortCode.ShortCodeId);
             if (existingShortCode == null)
             {
-                addPageViewModel.ActiveShortCode.ShortCodeId = _applicationState.NextShortCodeId++;
+                var nextShortCode = _applicationState.NextShortCodeId++;
+                addPageViewModel.ActiveShortCode.ShortCodeId = nextShortCode;
+                addPageViewModel.ActiveShortCode.LastUsed = DateTime.Now;
                 _applicationState.ShortCodes.Add(addPageViewModel.ActiveShortCode);
             } else {
                 existingShortCode.Name = addPageViewModel.ActiveShortCode.Name;

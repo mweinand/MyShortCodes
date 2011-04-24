@@ -52,5 +52,17 @@ namespace MyShortCodes.Phone.Domain
                 NotifyPropertyChanged("LastUsed");
             }
         }
+
+        private int _timesUsed;
+        public int TimesUsed
+        {
+            get { return _timesUsed; }
+            set
+            {
+                if (_timesUsed == value) return;
+                _timesUsed = value;
+                NotifyPropertyChanged("TimesUsed");
+            }
+        }
     }
 }

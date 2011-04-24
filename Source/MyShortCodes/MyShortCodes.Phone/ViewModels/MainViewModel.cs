@@ -8,6 +8,7 @@ namespace MyShortCodes.Phone.ViewModels
     {
         ObservableCollection<ShortCode> AllShortCodes { get; }
         ObservableCollection<ShortCode> RecentShortCodes { get; }
+        ObservableCollection<ShortCode> MostUsedShortCodes { get; }
     }
 
     public class MainViewModel : BindableObject, IMainViewModel
@@ -16,6 +17,7 @@ namespace MyShortCodes.Phone.ViewModels
         {
             AllShortCodes = new ObservableCollection<ShortCode>();
             RecentShortCodes = new ObservableCollection<ShortCode>();
+            MostUsedShortCodes = new ObservableCollection<ShortCode>();
         }
 
         /// <summary>
@@ -24,6 +26,8 @@ namespace MyShortCodes.Phone.ViewModels
         public ObservableCollection<ShortCode> AllShortCodes { get; private set; }
 
         public ObservableCollection<ShortCode> RecentShortCodes { get; private set; }
+
+        public ObservableCollection<ShortCode> MostUsedShortCodes { get; private set; }
 
     }
 }

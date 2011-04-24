@@ -23,6 +23,7 @@ namespace MyShortCodes.Phone.Storage
 
         public void SaveData()
         {
+            _settingsManager.Put("NextShortCodeId", _applicationState.NextShortCodeId);
             _settingsManager.Put("ShortCodes", _applicationState.ShortCodes.ToArray());
             _settingsManager.Save();
         }
@@ -34,17 +35,17 @@ namespace MyShortCodes.Phone.Storage
             
             var shortCodes = _settingsManager.Get<ShortCode[]>("ShortCodes");
             var nextShortCodeId = _settingsManager.Get<int>("NextShortCodeId");
-            if(shortCodes == null)
-            {
-                return;
-            }
-
+            
             _applicationState.NextShortCodeId = nextShortCodeId > 0 ? nextShortCodeId : 1;
-
-            foreach(var shortCode in shortCodes)
+            
+            if (shortCodes != null)
             {
-                _applicationState.ShortCodes.Add(shortCode);
+                foreach (var shortCode in shortCodes)
+                {
+                    _applicationState.ShortCodes.Add(shortCode);
+                }
             }
+
             _applicationState.IsDataLoaded = true;
         }
     }

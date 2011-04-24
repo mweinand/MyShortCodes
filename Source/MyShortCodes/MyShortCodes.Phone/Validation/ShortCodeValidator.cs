@@ -32,7 +32,7 @@ namespace MyShortCodes.Phone.Validation
             }
             else
             {
-                if (!Regex.Match(target.Code, "[0-9]{2,6}").Success)
+                if (!Regex.Match(target.Code, "^[0-9]{2,6}$").Success)
                 {
                     result.IsValid = false;
                     result.Errors.Add("Code must be 2 to 6 digits");
