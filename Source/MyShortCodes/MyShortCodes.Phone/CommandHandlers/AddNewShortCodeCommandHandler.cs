@@ -40,7 +40,11 @@ namespace MyShortCodes.Phone.CommandHandlers
         {
             if (_trialService.IsTrial() && _applicationState.ShortCodes.Count > 0)
             {
-                _dialogService.Alert("The trial version is limited to storing 1 short code only");
+                var result = _dialogService.Confirm("The trial version is limited to storing 1 short code only.  Click Okay to buy the full version.");
+                if (result)
+                {
+                    _trialService.SendUserToMarketplace();
+                }
                 return;
             }
 

@@ -1,11 +1,13 @@
 ﻿using System;
 using Microsoft.Phone.Marketplace;
+using Microsoft.Phone.Tasks;
 
 namespace MyShortCodes.Phone.Services
 {
     public interface ITrialService
     {
         bool IsTrial();
+        void SendUserToMarketplace();
     }
 
     public class TrialService : ITrialService
@@ -14,6 +16,12 @@ namespace MyShortCodes.Phone.Services
         {
             var license = new LicenseInformation();
             return license.IsTrial();
+        }
+
+        public void SendUserToMarketplace()
+        {
+            var detailTask = new MarketplaceDetailTask();
+            detailTask.Show();
         }
     }
 }

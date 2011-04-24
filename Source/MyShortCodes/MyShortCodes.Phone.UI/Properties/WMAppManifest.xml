@@ -1,19 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2009/deployment" AppPlatformVersion="7.0">
-  <App xmlns="" ProductID="{a45321d2-d08f-413f-870c-4210899c965d}" Title="My Short Codes" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="MyShortCodes.Phone.UI author" Description="Sample description" Publisher="MyShortCodes.Phone.UI">
+  <App xmlns="" ProductID="{a45321d2-d08f-413f-870c-4210899c965d}" Title="My Short Codes" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Michael Weinand" Description="A simple application to manage a list of common short code numbers to send messages.  Can be used to quickly respond to promotions or remember codes to use later." Publisher="Weinand Software">
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
-      <Capability Name="ID_CAP_GAMERSERVICES" />
-      <Capability Name="ID_CAP_IDENTITY_DEVICE" />
-      <Capability Name="ID_CAP_IDENTITY_USER" />
-      <Capability Name="ID_CAP_LOCATION" />
-      <Capability Name="ID_CAP_MEDIALIB" />
-      <Capability Name="ID_CAP_MICROPHONE" />
-      <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_PHONEDIALER" />
-      <Capability Name="ID_CAP_PUSH_NOTIFICATION" />
-      <Capability Name="ID_CAP_SENSORS" />
-      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
