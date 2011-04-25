@@ -2,18 +2,17 @@
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Tasks;
 using MyShortCodes.Phone.Commands;
 using MyShortCodes.Phone.Infrastructure.Container;
 using MyShortCodes.Phone.Infrastructure.Messaging;
 using MyShortCodes.Phone.Domain;
 using MyShortCodes.Phone.ViewModels;
 
-namespace MyShortCodes.Phone.UI
+namespace MyShortCodes.Phone.UI.Views
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        private ICommandBus _commandBus;
+        private readonly ICommandBus _commandBus;
 
         // Constructor
         public MainPage()
@@ -24,13 +23,12 @@ namespace MyShortCodes.Phone.UI
 
             // Set the data context of the listbox control to the sample data
             DataContext = MicroMap.GetInstance<IMainViewModel>();
-            Loaded += MainPage_Loaded;
+            Loaded += MainPageLoaded;
         }
 
         // Load data for the ViewModel Items
-        private void MainPage_Loaded(object sender, RoutedEventArgs e)
+        private void MainPageLoaded(object sender, RoutedEventArgs e)
         {
-            var commandBus = MicroMap.GetInstance<ICommandBus>();
             _commandBus.PublishCommand(new MainPageLoadedCommand());
         }
 

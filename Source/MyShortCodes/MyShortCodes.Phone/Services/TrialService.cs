@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.Phone.Marketplace;
+﻿using Microsoft.Phone.Marketplace;
 using Microsoft.Phone.Tasks;
 
 namespace MyShortCodes.Phone.Services
