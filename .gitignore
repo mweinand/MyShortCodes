@@ -22,3 +22,5 @@ Thumbs.db
 *.pidb
 <<<<<<< HEAD
 *.userprefs
+Source/MyShortCodes/MyShortCodes.Phone.UI/Bin/*
+Source/MyShortCodes/MyShortCodes.Phone.Tests/Bin/*
