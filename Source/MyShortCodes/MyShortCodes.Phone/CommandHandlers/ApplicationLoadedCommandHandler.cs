@@ -4,6 +4,7 @@ using MyShortCodes.Phone.Infrastructure.Messaging;
 using MyShortCodes.Phone.State;
 using MyShortCodes.Phone.Storage;
 using MyShortCodes.Phone.Services;
+using MyShortCodes.Phone.Infrastructure.Threads;
 
 namespace MyShortCodes.Phone.CommandHandlers
 {
@@ -12,22 +13,28 @@ namespace MyShortCodes.Phone.CommandHandlers
         private readonly IApplicationState _applicationState;
         private readonly IStorageManager _storageManager;
         private readonly IDialogService _dialogService;
+        private readonly IUIThreadInvoker _uiThreadInvoker;
 
-        public ApplicationLoadedCommandHandler(IApplicationState applicationState, IStorageManager storageManager, IDialogService dialogService)
+        public ApplicationLoadedCommandHandler(IApplicationState applicationState, IStorageManager storageManager, IDialogService dialogService, IUIThreadInvoker uiThreadInvoker)
         {
             _applicationState = applicationState;
             _storageManager = storageManager;
             _dialogService = dialogService;
+            _uiThreadInvoker = uiThreadInvoker;
         }
 
         public void Handle(ApplicationLoadedCommand command)
         {
             if(!_applicationState.IsDataLoaded)
             {
+                _applicationState.IsDataLoading = true;
                 _storageManager.LoadData();
             }
 
-            _dialogService.Alert("By running this application you agree to not use it while driving and we are not responsible for what happens to you while running this application.");
+            _uiThreadInvoker.Invoke(() =>
+            {
+                _dialogService.Alert("By running this application you agree to not use it while driving and we are not responsible for what happens to you while running this application.");
+            });
         }
     }
 }

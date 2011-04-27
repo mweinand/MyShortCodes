@@ -9,6 +9,7 @@ using MyShortCodes.Phone.Infrastructure.Container;
 using MyShortCodes.Phone.ViewModels;
 using MyShortCodes.Phone.Domain;
 using MyShortCodes.Phone.Validation;
+using MyShortCodes.Phone.Infrastructure.Threads;
 
 namespace MyShortCodes.Phone.CommandHandlers
 {
@@ -19,14 +20,17 @@ namespace MyShortCodes.Phone.CommandHandlers
         private readonly INavigationServiceWrapper _navigationService;
         private readonly IContainer _container;
         private readonly IValidator<ShortCode> _shortCodeValidator;
+        private readonly IUIThreadInvoker _uiThreadInvoker;
 
-        public SaveShortCodeCommandHandler(IApplicationState applicationState, IStorageManager storageManager, INavigationServiceWrapper navigationService, IContainer container, IValidator<ShortCode> shortCodeValidator)
+
+        public SaveShortCodeCommandHandler(IApplicationState applicationState, IStorageManager storageManager, INavigationServiceWrapper navigationService, IContainer container, IValidator<ShortCode> shortCodeValidator, IUIThreadInvoker uiThreadInvoker)
         {
             _applicationState = applicationState;
             _storageManager = storageManager;
             _navigationService = navigationService;
             _container = container;
             _shortCodeValidator = shortCodeValidator;
+            _uiThreadInvoker = uiThreadInvoker;
         }
 
         public void Handle(SaveShortCodeCommand command)
@@ -61,7 +65,10 @@ namespace MyShortCodes.Phone.CommandHandlers
             // save to storage
             _storageManager.SaveData();
 
-            _navigationService.Navigate("/Views/MainPage.xaml");
+            _uiThreadInvoker.Invoke(() =>
+            {
+                _navigationService.Navigate("/Views/MainPage.xaml");
+            });
         }
     }
 }

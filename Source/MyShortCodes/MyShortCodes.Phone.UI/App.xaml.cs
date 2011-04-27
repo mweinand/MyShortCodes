@@ -15,6 +15,8 @@ using MyShortCodes.Phone.ViewModels;
 using MyShortCodes.Phone.Validation;
 using MyShortCodes.Phone.Domain;
 using MyShortCodes.Phone.Services;
+using MyShortCodes.Phone.Infrastructure.Threads;
+using MyShortCodes.Phone.UI.Infrastructure.Threads;
 
 namespace MyShortCodes.Phone.UI
 {
@@ -40,7 +42,7 @@ namespace MyShortCodes.Phone.UI
             if (System.Diagnostics.Debugger.IsAttached)
             {
                 // Display the current frame rate counters
-                Application.Current.Host.Settings.EnableFrameRateCounter = true;
+                //Application.Current.Host.Settings.EnableFrameRateCounter = true;
 
                 // Show the areas of the app that are being redrawn in each frame.
                 //Application.Current.Host.Settings.EnableRedrawRegions = true;
@@ -67,6 +69,7 @@ namespace MyShortCodes.Phone.UI
             {
                 x.Register<ISettingsManager, SettingsManager>();
                 x.Register<IStorageManager, StorageManager>();
+                x.Register<IUIThreadInvoker, UIThreadInvoker>();
                 x.Register<ICommandBus>(commandBus);
                 x.Register<IApplicationState>(state);
 
@@ -81,6 +84,7 @@ namespace MyShortCodes.Phone.UI
                 x.Register<ICommandHandler<SaveShortCodeCommand>, SaveShortCodeCommandHandler>();
                 x.Register<ICommandHandler<DeleteShortCodeCommand>, DeleteShortCodeCommandHandler>();
                 x.Register<ICommandHandler<SendSmsCommand>, SendSmsCommandHandler>();
+                x.Register<ICommandHandler<DataLoadedMessage>, DataLoadedCommandHandler>();
 
                 x.Register<IValidator<ShortCode>, ShortCodeValidator>();
 
@@ -96,6 +100,7 @@ namespace MyShortCodes.Phone.UI
             commandBus.RegisterHandler(MicroMap.GetInstance<ICommandHandler<SaveShortCodeCommand>>());
             commandBus.RegisterHandler(MicroMap.GetInstance<ICommandHandler<DeleteShortCodeCommand>>());
             commandBus.RegisterHandler(MicroMap.GetInstance<ICommandHandler<SendSmsCommand>>());
+            commandBus.RegisterHandler(MicroMap.GetInstance<ICommandHandler<DataLoadedMessage>>());
 
         }
 

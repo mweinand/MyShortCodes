@@ -9,6 +9,8 @@ namespace MyShortCodes.Phone.State
         IList<ShortCode> ShortCodes { get; }
         bool IsDataLoaded { get; set; }
         int NextShortCodeId {get;set;}
+
+        bool IsDataLoading { get; set; }
     }
     public class ApplicationState : IApplicationState
     {
@@ -19,6 +21,8 @@ namespace MyShortCodes.Phone.State
             get;
             set;
         }
+
+        public bool IsDataLoading { get; set; }
 
         public ApplicationState()
         {

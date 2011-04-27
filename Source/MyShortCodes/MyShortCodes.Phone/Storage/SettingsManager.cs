@@ -30,7 +30,6 @@ namespace MyShortCodes.Phone.Storage
             {
                 IsolatedStorageSettings.ApplicationSettings[name] = data;
             }
-            IsolatedStorageSettings.ApplicationSettings.Save();
         }
 
         public void Save()

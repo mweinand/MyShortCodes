@@ -1,6 +1,8 @@
 using System.Linq;
 using MyShortCodes.Phone.State;
 using MyShortCodes.Phone.Domain;
+using MyShortCodes.Phone.Infrastructure.Messaging;
+using MyShortCodes.Phone.Commands;
 
 namespace MyShortCodes.Phone.Storage
 {
@@ -14,11 +16,13 @@ namespace MyShortCodes.Phone.Storage
     {
         private readonly IApplicationState _applicationState;
         private readonly ISettingsManager _settingsManager;
+        private readonly ICommandBus _commandBus;
 
-        public StorageManager(IApplicationState applicationState, ISettingsManager settingsManager)
+        public StorageManager(IApplicationState applicationState, ISettingsManager settingsManager, ICommandBus commandBus)
         {
             _applicationState = applicationState;
             _settingsManager = settingsManager;
+            _commandBus = commandBus;
         }
 
         public void SaveData()
@@ -26,12 +30,12 @@ namespace MyShortCodes.Phone.Storage
             _settingsManager.Put("NextShortCodeId", _applicationState.NextShortCodeId);
             _settingsManager.Put("ShortCodes", _applicationState.ShortCodes.ToArray());
             _settingsManager.Save();
+            _commandBus.PublishCommand(new DataLoadedMessage());
         }
 
         public void LoadData()
         {
             _applicationState.ShortCodes.Clear();
-            //_applicationState.IsDataLoaded = true;
             
             var shortCodes = _settingsManager.Get<ShortCode[]>("ShortCodes");
             var nextShortCodeId = _settingsManager.Get<int>("NextShortCodeId");
@@ -47,6 +51,9 @@ namespace MyShortCodes.Phone.Storage
             }
 
             _applicationState.IsDataLoaded = true;
+            _applicationState.IsDataLoading = false;
+
+            _commandBus.PublishCommand(new DataLoadedMessage());
         }
     }
 }

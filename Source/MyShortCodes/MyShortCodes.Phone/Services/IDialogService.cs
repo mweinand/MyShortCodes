@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using MyShortCodes.Phone.Infrastructure.Threads;
 
 namespace MyShortCodes.Phone.Services
 {
@@ -10,6 +11,7 @@ namespace MyShortCodes.Phone.Services
 
     public class DialogService : IDialogService
     {
+
         public bool Confirm(string message)
         {
             var result = MessageBox.Show(message, "Confirm", MessageBoxButton.OKCancel);

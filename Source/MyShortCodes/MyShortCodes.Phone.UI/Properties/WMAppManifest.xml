@@ -4,7 +4,7 @@
     <IconPath IsRelative="true" IsResource="false">ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_PHONEDIALER" />
-      <Capability Name="ID_CAP_NETWORKING" />
+      <!--<Capability Name="ID_CAP_NETWORKING" />-->
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="Views/MainPage.xaml" />

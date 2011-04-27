@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace MyShortCodes.Phone.Infrastructure.Messaging
 {
@@ -60,7 +61,10 @@ namespace MyShortCodes.Phone.Infrastructure.Messaging
                     {
                         continue;
                     }
-                    commandHandler.Handle(command);
+                    ThreadPool.QueueUserWorkItem((s) =>
+                    {
+                        commandHandler.Handle(command);
+                    });
                 }
                 else if (actionType == typeof(Action<TCommand>))
                 {
@@ -69,7 +73,10 @@ namespace MyShortCodes.Phone.Infrastructure.Messaging
                     {
                         continue;
                     }
-                    actionHandler(command);
+                    ThreadPool.QueueUserWorkItem((s) =>
+                    {
+                        actionHandler(command);
+                    });
                 }
             }
         }
