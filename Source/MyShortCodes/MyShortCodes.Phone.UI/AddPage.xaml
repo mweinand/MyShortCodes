@@ -41,7 +41,7 @@
                     <TextBlock Text="Name"></TextBlock>
                     <TextBox x:Name="ShortCodeName" Text="{Binding Name, Mode=TwoWay}"></TextBox>
                     <TextBlock Text="Code"></TextBlock>
-                    <TextBox x:Name="ShortCodeCode" Text="{Binding Code, Mode=TwoWay}" MaxLength="10" InputScope="Digits"></TextBox>
+                    <TextBox x:Name="ShortCodeCode" Text="{Binding Code, Mode=TwoWay}" MaxLength="10" InputScope="TelephoneNumber"></TextBox>
                     <Button Content="Save" Click="SaveButtonClick"></Button>
                 </StackPanel>
             </StackPanel>
