@@ -20,7 +20,7 @@
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>MyShortCodes..xap</XapFilename>
+    <XapFilename>MyShortCodes.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
     <SilverlightAppEntry>MyShortCodes.Phone.UI.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>

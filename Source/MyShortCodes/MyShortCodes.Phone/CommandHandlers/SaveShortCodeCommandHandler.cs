@@ -41,11 +41,14 @@ namespace MyShortCodes.Phone.CommandHandlers
             var result = _shortCodeValidator.Validate(addPageViewModel.ActiveShortCode);
             if (!result.IsValid)
             {
-                addPageViewModel.Errors.Clear();
-                foreach (var error in result.Errors)
-                {
-                    addPageViewModel.Errors.Add(error);
-                }
+                _uiThreadInvoker.Invoke(() =>
+                                            {
+                                                addPageViewModel.Errors.Clear();
+                                                foreach (var error in result.Errors)
+                                                {
+                                                    addPageViewModel.Errors.Add(error);
+                                                }
+                                            });
                 return;
             }
 
@@ -65,10 +68,7 @@ namespace MyShortCodes.Phone.CommandHandlers
             // save to storage
             _storageManager.SaveData();
 
-            _uiThreadInvoker.Invoke(() =>
-            {
-                _navigationService.Navigate("/Views/MainPage.xaml");
-            });
+            _uiThreadInvoker.Invoke(() => _navigationService.Navigate("/Views/MainPage.xaml"));
         }
     }
 }
