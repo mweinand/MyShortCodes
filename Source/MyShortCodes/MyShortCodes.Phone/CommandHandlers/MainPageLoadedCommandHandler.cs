@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using MyShortCodes.Phone.Commands;
 using MyShortCodes.Phone.Infrastructure.Container;
@@ -10,8 +9,8 @@ namespace MyShortCodes.Phone.CommandHandlers
 {
     public class MainPageLoadedCommandHandler : ICommandHandler<MainPageLoadedCommand>
     {
-        private IContainer _container;
-        private IApplicationState _applicationState;
+        private readonly IContainer _container;
+        private readonly IApplicationState _applicationState;
 
         public MainPageLoadedCommandHandler(IContainer container, IApplicationState applicationState)
         {

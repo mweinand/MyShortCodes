@@ -1,14 +1,4 @@
-﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
-using MyShortCodes.Phone.Infrastructure.Messaging;
+﻿using MyShortCodes.Phone.Infrastructure.Messaging;
 using MyShortCodes.Phone.Commands;
 using MyShortCodes.Phone.Navigation;
 using MyShortCodes.Phone.Infrastructure.Container;
@@ -21,11 +11,11 @@ namespace MyShortCodes.Phone.CommandHandlers
 {
     public class AddNewShortCodeCommandHandler : ICommandHandler<AddNewShortCodeCommand>
     {
-        private INavigationServiceWrapper _navigationService;
-        private IContainer _container;
-        private ITrialService _trialService;
-        private IApplicationState _applicationState;
-        private IDialogService _dialogService;
+        private readonly INavigationServiceWrapper _navigationService;
+        private readonly IContainer _container;
+        private readonly ITrialService _trialService;
+        private readonly IApplicationState _applicationState;
+        private readonly IDialogService _dialogService;
 
         public AddNewShortCodeCommandHandler(INavigationServiceWrapper navigationService, IContainer container, ITrialService trialService, IApplicationState applicationState, IDialogService dialogService)
         {
@@ -54,7 +44,7 @@ namespace MyShortCodes.Phone.CommandHandlers
             addPageViewModel.Errors.Clear();
             addPageViewModel.PageTitle = "add code";
 
-            _navigationService.Navigate("/AddPage.xaml");
+            _navigationService.Navigate("/Views/AddPage.xaml");
         }
     }
 }

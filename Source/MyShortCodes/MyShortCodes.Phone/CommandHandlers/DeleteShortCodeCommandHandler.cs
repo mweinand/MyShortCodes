@@ -1,13 +1,4 @@
 ﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using MyShortCodes.Phone.Commands;
 using MyShortCodes.Phone.Infrastructure.Messaging;
 using MyShortCodes.Phone.Services;
@@ -18,10 +9,10 @@ namespace MyShortCodes.Phone.CommandHandlers
 {
     public class DeleteShortCodeCommandHandler : ICommandHandler<DeleteShortCodeCommand>
     {
-        private IDialogService _dialogService;
-        private IApplicationState _applicationState;
-        private IStorageManager _storageManager;
-        private ICommandBus _commandBus;
+        private readonly IDialogService _dialogService;
+        private readonly IApplicationState _applicationState;
+        private readonly IStorageManager _storageManager;
+        private readonly ICommandBus _commandBus;
 
         public DeleteShortCodeCommandHandler(IDialogService dialogService, IApplicationState applicationState, IStorageManager storageManager, ICommandBus commandBus)
         {

@@ -1,13 +1,4 @@
 ﻿using System;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 using System.Linq;
 using MyShortCodes.Phone.Commands;
 using MyShortCodes.Phone.Infrastructure.Messaging;
@@ -23,11 +14,11 @@ namespace MyShortCodes.Phone.CommandHandlers
 {
     public class SaveShortCodeCommandHandler : ICommandHandler<SaveShortCodeCommand>
     {
-        private IApplicationState _applicationState;
-        private IStorageManager _storageManager;
-        private INavigationServiceWrapper _navigationService;
-        private IContainer _container;
-        private IValidator<ShortCode> _shortCodeValidator;
+        private readonly IApplicationState _applicationState;
+        private readonly IStorageManager _storageManager;
+        private readonly INavigationServiceWrapper _navigationService;
+        private readonly IContainer _container;
+        private readonly IValidator<ShortCode> _shortCodeValidator;
 
         public SaveShortCodeCommandHandler(IApplicationState applicationState, IStorageManager storageManager, INavigationServiceWrapper navigationService, IContainer container, IValidator<ShortCode> shortCodeValidator)
         {
@@ -70,7 +61,7 @@ namespace MyShortCodes.Phone.CommandHandlers
             // save to storage
             _storageManager.SaveData();
 
-            _navigationService.Navigate("/MainPage.xaml");
+            _navigationService.Navigate("/Views/MainPage.xaml");
         }
     }
 }
