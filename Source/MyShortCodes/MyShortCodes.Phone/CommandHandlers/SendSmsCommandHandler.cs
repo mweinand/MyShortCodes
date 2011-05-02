@@ -1,7 +1,7 @@
 ﻿using System;
+using Mangifera.Messaging;
 using Microsoft.Phone.Tasks;
 using MyShortCodes.Phone.Commands;
-using MyShortCodes.Phone.Infrastructure.Messaging;
 using MyShortCodes.Phone.Storage;
 using MyShortCodes.Phone.State;
 using System.Linq;

@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using MyShortCodes.Phone.Infrastructure;
+using Mangifera.Binding;
 using MyShortCodes.Phone.Domain;
 
 namespace MyShortCodes.Phone.ViewModels

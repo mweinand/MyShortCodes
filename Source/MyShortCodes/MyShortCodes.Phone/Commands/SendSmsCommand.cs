@@ -1,5 +1,4 @@
-﻿using System;
-using MyShortCodes.Phone.Infrastructure.Messaging;
+﻿using Mangifera.Messaging;
 using MyShortCodes.Phone.Domain;
 
 namespace MyShortCodes.Phone.Commands

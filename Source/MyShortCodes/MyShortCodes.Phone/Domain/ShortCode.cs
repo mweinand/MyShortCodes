@@ -1,5 +1,5 @@
 using System;
-using MyShortCodes.Phone.Infrastructure;
+using Mangifera.Binding;
 
 namespace MyShortCodes.Phone.Domain
 {

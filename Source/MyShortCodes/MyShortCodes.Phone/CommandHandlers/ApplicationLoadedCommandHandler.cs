@@ -1,10 +1,9 @@
-using System;
+using Mangifera.Messaging;
+using Mangifera.Phone.UI;
+using Mangifera.Threading;
 using MyShortCodes.Phone.Commands;
-using MyShortCodes.Phone.Infrastructure.Messaging;
 using MyShortCodes.Phone.State;
 using MyShortCodes.Phone.Storage;
-using MyShortCodes.Phone.Services;
-using MyShortCodes.Phone.Infrastructure.Threads;
 
 namespace MyShortCodes.Phone.CommandHandlers
 {
@@ -31,10 +30,7 @@ namespace MyShortCodes.Phone.CommandHandlers
                 _storageManager.LoadData();
             }
 
-            _uiThreadInvoker.Invoke(() =>
-            {
-                _dialogService.Alert("By running this application you agree to not use it while driving and we are not responsible for what happens to you while running this application.");
-            });
+            _uiThreadInvoker.Invoke(() => _dialogService.Alert("By running this application you agree to not use it while driving and we are not responsible for what happens to you while running this application."));
         }
     }
 }

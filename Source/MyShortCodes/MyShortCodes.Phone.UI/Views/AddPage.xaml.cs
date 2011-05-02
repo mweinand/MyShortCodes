@@ -1,8 +1,8 @@
 ﻿using System.Windows;
+using Mangifera.Container;
+using Mangifera.Messaging;
 using Microsoft.Phone.Controls;
-using MyShortCodes.Phone.Infrastructure.Container;
 using MyShortCodes.Phone.ViewModels;
-using MyShortCodes.Phone.Infrastructure.Messaging;
 using MyShortCodes.Phone.Commands;
 
 namespace MyShortCodes.Phone.UI.Views

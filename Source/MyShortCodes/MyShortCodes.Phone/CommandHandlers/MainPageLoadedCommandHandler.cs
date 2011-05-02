@@ -1,8 +1,5 @@
-using System.Linq;
+using Mangifera.Messaging;
 using MyShortCodes.Phone.Commands;
-using MyShortCodes.Phone.Infrastructure.Container;
-using MyShortCodes.Phone.Infrastructure.Messaging;
-using MyShortCodes.Phone.ViewModels;
 using MyShortCodes.Phone.State;
 using MyShortCodes.Phone.Storage;
 

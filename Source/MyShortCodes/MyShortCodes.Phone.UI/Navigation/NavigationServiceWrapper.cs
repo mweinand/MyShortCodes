@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows;
-using MyShortCodes.Phone.Navigation;
+using Mangifera.Navigation;
 
 namespace MyShortCodes.Phone.UI.Navigation
 {

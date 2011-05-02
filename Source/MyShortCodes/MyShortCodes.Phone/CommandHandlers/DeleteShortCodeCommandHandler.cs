@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
+using Mangifera.Messaging;
+using Mangifera.Phone.UI;
+using Mangifera.Threading;
 using MyShortCodes.Phone.Commands;
-using MyShortCodes.Phone.Infrastructure.Messaging;
-using MyShortCodes.Phone.Services;
 using MyShortCodes.Phone.State;
 using MyShortCodes.Phone.Storage;
-using MyShortCodes.Phone.Infrastructure.Threads;
 
 namespace MyShortCodes.Phone.CommandHandlers
 {
@@ -14,15 +14,13 @@ namespace MyShortCodes.Phone.CommandHandlers
         private readonly IDialogService _dialogService;
         private readonly IApplicationState _applicationState;
         private readonly IStorageManager _storageManager;
-        private readonly ICommandBus _commandBus;
         private readonly IUIThreadInvoker _uiThreadInvoker;
 
-        public DeleteShortCodeCommandHandler(IDialogService dialogService, IApplicationState applicationState, IStorageManager storageManager, ICommandBus commandBus, IUIThreadInvoker uiThreadInvoker)
+        public DeleteShortCodeCommandHandler(IDialogService dialogService, IApplicationState applicationState, IStorageManager storageManager, IUIThreadInvoker uiThreadInvoker)
         {
             _dialogService = dialogService;
             _applicationState = applicationState;
             _storageManager = storageManager;
-            _commandBus = commandBus;
             _uiThreadInvoker = uiThreadInvoker;
         }
 

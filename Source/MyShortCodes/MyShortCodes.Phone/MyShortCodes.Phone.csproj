@@ -41,6 +41,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Mangifera">
+      <HintPath>..\..\..\Lib\Mangifera\Mangifera.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="System.Windows" />
     <Reference Include="system" />
@@ -66,22 +69,10 @@
     <Compile Include="Commands\SaveShortCodeCommand.cs" />
     <Compile Include="Commands\SendSmsCommand.cs" />
     <Compile Include="Domain\ShortCode.cs" />
-    <Compile Include="Infrastructure\BindableObject.cs" />
-    <Compile Include="Infrastructure\Container\MicroMap.cs" />
-    <Compile Include="Infrastructure\Messaging\ICommand.cs" />
-    <Compile Include="Infrastructure\Messaging\ICommandBus.cs" />
-    <Compile Include="Infrastructure\Messaging\ICommandHandler.cs" />
-    <Compile Include="Infrastructure\Threads\IUIThreadInvoker.cs" />
-    <Compile Include="Navigation\NavigationServiceWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\IDialogService.cs" />
-    <Compile Include="Services\TrialService.cs" />
     <Compile Include="State\ApplicationState.cs" />
-    <Compile Include="Storage\SettingsManager.cs" />
     <Compile Include="Storage\StorageManager.cs" />
-    <Compile Include="Validation\IValidator.cs" />
     <Compile Include="Validation\ShortCodeValidator.cs" />
-    <Compile Include="Validation\ValidationResult.cs" />
     <Compile Include="ViewModels\AddPageViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
   </ItemGroup>

@@ -1,7 +1,8 @@
 using System.Linq;
+using Mangifera.Messaging;
+using Mangifera.Phone;
 using MyShortCodes.Phone.State;
 using MyShortCodes.Phone.Domain;
-using MyShortCodes.Phone.Infrastructure.Messaging;
 using MyShortCodes.Phone.Commands;
 
 namespace MyShortCodes.Phone.Storage

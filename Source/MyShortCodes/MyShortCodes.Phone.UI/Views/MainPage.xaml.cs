@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using Mangifera.Container;
+using Mangifera.Messaging;
 using Microsoft.Phone.Controls;
 using MyShortCodes.Phone.Commands;
-using MyShortCodes.Phone.Infrastructure.Container;
-using MyShortCodes.Phone.Infrastructure.Messaging;
 using MyShortCodes.Phone.Domain;
 using MyShortCodes.Phone.ViewModels;
 

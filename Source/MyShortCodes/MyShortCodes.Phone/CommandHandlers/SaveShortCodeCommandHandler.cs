@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Linq;
+using Mangifera.Container;
+using Mangifera.Messaging;
+using Mangifera.Navigation;
+using Mangifera.Threading;
+using Mangifera.Validation;
 using MyShortCodes.Phone.Commands;
-using MyShortCodes.Phone.Infrastructure.Messaging;
 using MyShortCodes.Phone.State;
 using MyShortCodes.Phone.Storage;
-using MyShortCodes.Phone.Navigation;
-using MyShortCodes.Phone.Infrastructure.Container;
 using MyShortCodes.Phone.ViewModels;
 using MyShortCodes.Phone.Domain;
-using MyShortCodes.Phone.Validation;
-using MyShortCodes.Phone.Infrastructure.Threads;
 
 namespace MyShortCodes.Phone.CommandHandlers
 {

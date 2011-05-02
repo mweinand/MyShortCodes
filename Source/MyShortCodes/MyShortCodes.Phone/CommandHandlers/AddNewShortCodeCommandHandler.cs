@@ -1,12 +1,13 @@
-﻿using MyShortCodes.Phone.Infrastructure.Messaging;
+﻿using Mangifera.Container;
+using Mangifera.Messaging;
+using Mangifera.Navigation;
+using Mangifera.Phone.Licensing;
+using Mangifera.Phone.UI;
+using Mangifera.Threading;
 using MyShortCodes.Phone.Commands;
-using MyShortCodes.Phone.Navigation;
-using MyShortCodes.Phone.Infrastructure.Container;
 using MyShortCodes.Phone.ViewModels;
 using MyShortCodes.Phone.Domain;
-using MyShortCodes.Phone.Services;
 using MyShortCodes.Phone.State;
-using MyShortCodes.Phone.Infrastructure.Threads;
 
 namespace MyShortCodes.Phone.CommandHandlers
 {
